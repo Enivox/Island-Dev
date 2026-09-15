@@ -488,7 +488,6 @@ class LecteurMedia(QThread):
         super().__init__()
         self._actif = True
         self._signature = object()
-        self._piste_cache = None
         self._pochette_cache = None
         self._loop = None
         self._gestionnaire = None
@@ -511,7 +510,10 @@ class LecteurMedia(QThread):
             except Exception:
                 infos, prog = None, (0.0, 0.0, False)
             signature = None if infos is None else (
-                infos["titre"], infos["artiste"], infos["etat"], infos["shuffle"]
+                infos["titre"], infos["artiste"], infos["etat"], infos["shuffle"],
+                # La pochette fait partie de la signature : une image qui arrive
+                # en retard déclenche bien une mise à jour de l'affichage.
+                None if infos["pochette"] is None else hash(infos["pochette"]),
             )
             if signature != self._signature:
                 self._signature = signature
@@ -533,10 +535,11 @@ class LecteurMedia(QThread):
         ligne_temps = session.get_timeline_properties()
         titre = proprietes.title or ""
         artiste = proprietes.artist or ""
-        piste = (titre, artiste)
-        if piste != self._piste_cache:
-            self._pochette_cache = await self._lire_pochette(proprietes.thumbnail)
-            self._piste_cache = piste
+        # On relit la pochette à CHAQUE cycle : beaucoup d'applis (navigateur,
+        # Spotify…) publient le nouveau titre AVANT sa nouvelle image. Si on ne
+        # la lisait qu'au changement de titre, on figerait l'ancienne pochette.
+        # La comparaison de signature (plus bas) évite de rafraîchir pour rien.
+        self._pochette_cache = await self._lire_pochette(proprietes.thumbnail)
         if etat_brut == EtatLecture.PLAYING:
             etat = "playing"
         elif etat_brut == EtatLecture.PAUSED:
