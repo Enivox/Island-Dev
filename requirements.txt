@@ -1,0 +1,30 @@
+# ============================================================
+#  Dépendances du projet "Music Island" (Dynamic Island musique)
+# ============================================================
+#
+# NOTE IMPORTANTE :
+# Le cahier des charges parlait de "winsdk". Or "winsdk" n'a PAS de version
+# compatible Python 3.14. Son SUCCESSEUR officiel est le projet PyWinRT,
+# publié sous forme de paquets "winrt-*". C'est exactement la même API
+# Windows.Media.Control ; seul le préfixe d'import change :
+#     winsdk.windows.media.control   ->   winrt.windows.media.control
+#
+# On utilise donc "winrt" (moderne + maintenu + wheels pour Python 3.14).
+# ------------------------------------------------------------
+
+# --- Accès à la "session média" globale de Windows (titre, artiste, contrôles) ---
+winrt-runtime>=3.2.1
+winrt-Windows.Media.Control>=3.2.1     # GlobalSystemMediaTransportControlsSessionManager
+winrt-Windows.Foundation>=3.2.1        # types de base (IAsyncOperation, etc.)
+winrt-Windows.Storage.Streams>=3.2.1   # lecture du flux de la pochette (étape 4)
+
+# --- Interface graphique (à partir de l'étape 2) ---
+PySide6>=6.10
+
+# --- Contrôle du volume système + niveau audio (visualiseur) ---
+pycaw>=20240210
+comtypes>=1.2.0                        # dépendance de pycaw (COM Windows)
+
+# --- Packaging en .exe (outils de build, optionnels) ---
+pyinstaller>=6.0                       # génère MusicIsland.exe
+pillow>=10.0                           # sert à créer l'icône .ico

@@ -1,0 +1,19 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- PyInstaller (artefacts de build, régénérables) ---
+build/
+dist/
+*.manifest
+
+# --- Fichiers temporaires / OS ---
+out_exe.txt
+err_exe.txt
+icon_256.png
+Thumbs.db
+desktop.ini
