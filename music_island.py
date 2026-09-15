@@ -57,7 +57,7 @@ from winrt.windows.storage.streams import DataReader
 #  RÉGLAGES
 # ====================================================================== #
 # Tailles du PANNEAU VISIBLE
-LARGEUR_REPLIE = 190
+LARGEUR_REPLIE = 132
 HAUTEUR_REPLIE = 34
 LARGEUR_ETENDU = 430
 HAUTEUR_ETENDU = 172
@@ -698,12 +698,15 @@ class Island(QWidget):
         self.lbl_pochette_mini = QLabel()
         self.lbl_pochette_mini.setFixedSize(COTE_POCHETTE_MINI, COTE_POCHETTE_MINI)
         self.visualiseur = Visualiseur(nb_barres=4, hauteur=16)
+        # Pochette + visualiseur GROUPÉS et CENTRÉS (pas collés aux bords).
         ligne = QHBoxLayout(self.mini)
-        ligne.setContentsMargins(14, 0, 18, 4)
-        ligne.setSpacing(8)
-        ligne.addWidget(self.lbl_pochette_mini, 0, Qt.AlignVCenter)
+        ligne.setContentsMargins(0, 0, 0, 4)
+        ligne.setSpacing(0)
         ligne.addStretch(1)
+        ligne.addWidget(self.lbl_pochette_mini, 0, Qt.AlignVCenter)
+        ligne.addSpacing(12)
         ligne.addWidget(self.visualiseur, 0, Qt.AlignVCenter)
+        ligne.addStretch(1)
 
     # ------------------------------------------------------------------ #
     #  Grand panneau
