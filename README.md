@@ -34,13 +34,25 @@ joue (n'importe quelle appli : Spotify, Deezer/YouTube dans le navigateur, etc.)
 - 🔔 **Icône dans la zone de notification** : activer/désactiver l'île, démarrer avec
   Windows, quitter.
 
-## Utilisation
+## Installation / utilisation
 
-### Le plus simple : l'exécutable
+### Installer (recommandé)
 
-Télécharge **`MusicIsland.exe`** et double-clique dessus. Une icône apparaît en bas à
-droite (parfois dans le **débordement `^`**) : **clic droit** pour le menu, **clic gauche**
-pour activer/désactiver.
+Récupère `MusicIsland.exe` + `installer.bat` (dans le dépôt) et **double-clique sur
+`installer.bat`**. Ça copie l'appli et crée un raccourci → tu la retrouves ensuite en
+tapant **« Music Island »** dans le menu Démarrer. (Désinstallation : `desinstaller.bat`.)
+
+> ⚠️ **« Windows a protégé votre ordinateur » / antivirus** : l'appli n'est **pas signée**
+> (un certificat de signature est payant), donc Windows affiche un avertissement
+> « éditeur inconnu ». Ce **n'est pas un virus** — c'est le cas de beaucoup d'apps indé.
+> Clique sur **« Informations complémentaires » → « Exécuter quand même »**. Si un antivirus
+> la met en quarantaine, c'est un **faux positif** (dû à PyInstaller) : ajoute une exception.
+
+### Juste lancer l'exe
+
+Tu peux aussi simplement **double-cliquer `MusicIsland.exe`** (sans installer). Une icône
+apparaît en bas à droite (parfois dans le **débordement `^`**) : **clic droit** pour le
+menu, **clic gauche** pour activer/désactiver.
 
 ### Depuis les sources
 
