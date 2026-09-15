@@ -36,11 +36,20 @@ joue (n'importe quelle appli : Spotify, Deezer/YouTube dans le navigateur, etc.)
 
 ## Installation / utilisation
 
-### Installer (recommandé)
+Deux façons de lancer Music Island, au choix : **sans rien installer** (l'exécutable) ou
+**depuis le code Python**.
 
-Récupère `MusicIsland.exe` + `installer.bat` (dans le dépôt) et **double-clique sur
-`installer.bat`**. Ça copie l'appli et crée un raccourci → tu la retrouves ensuite en
-tapant **« Music Island »** dans le menu Démarrer. (Désinstallation : `desinstaller.bat`.)
+### 🅰️ Sans Python — l'exécutable `.exe`
+
+Aucune dépendance à installer, pas besoin de Python : tout est empaqueté dans le `.exe`.
+
+- **Le plus simple** : télécharge `MusicIsland.exe` et **double-clique** dessus. Une icône
+  apparaît en bas à droite (parfois dans le **débordement `^`**) : **clic droit** pour le
+  menu, **clic gauche** pour activer/désactiver.
+- **Pour le retrouver dans la recherche Windows** : télécharge aussi `installer.bat` (dans
+  le même dossier que l'exe) et **double-clique sur `installer.bat`**. Ça copie l'appli et
+  crée un raccourci → tu la lances ensuite en tapant **« Music Island »** dans le menu
+  Démarrer. (Désinstallation : `desinstaller.bat`.)
 
 > ⚠️ **« Windows a protégé votre ordinateur » / antivirus** : l'appli n'est **pas signée**
 > (un certificat de signature est payant), donc Windows affiche un avertissement
@@ -48,22 +57,24 @@ tapant **« Music Island »** dans le menu Démarrer. (Désinstallation : `desin
 > Clique sur **« Informations complémentaires » → « Exécuter quand même »**. Si un antivirus
 > la met en quarantaine, c'est un **faux positif** (dû à PyInstaller) : ajoute une exception.
 
-### Juste lancer l'exe
+### 🅱️ Avec Python — depuis les sources
 
-Tu peux aussi simplement **double-cliquer `MusicIsland.exe`** (sans installer). Une icône
-apparaît en bas à droite (parfois dans le **débordement `^`**) : **clic droit** pour le
-menu, **clic gauche** pour activer/désactiver.
-
-### Depuis les sources
+Tu préfères lancer le code directement (pour le lire, le modifier, ou éviter le `.exe`) ?
+Il te faut **Python 3.11+** sur Windows, puis :
 
 ```bash
+git clone https://github.com/Enivox/Island-Dev.git
+cd Island-Dev
 python -m pip install -r requirements.txt
 python music_island.py
 ```
 
-## Générer l'exécutable soi-même
+C'est exactement la même appli que l'exe — juste lancée depuis le source.
 
-L'icône `icon.ico` et le fichier `MusicIsland.spec` sont fournis :
+### 🔨 (Optionnel) Générer l'exécutable soi-même
+
+L'icône `icon.ico` et le fichier `MusicIsland.spec` sont fournis. Depuis les sources
+(après le `pip install` ci-dessus) :
 
 ```bash
 pyinstaller MusicIsland.spec
